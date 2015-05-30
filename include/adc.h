@@ -5,9 +5,10 @@
  *  Author: TwoBit
  */ 
 
-
 #ifndef ADC_H_
 #define ADC_H_
+
+#include <avr/io.h>
 
 void adc_init(void);            						// Init ADC
 void adc_stop(void);            						// Stops ADC

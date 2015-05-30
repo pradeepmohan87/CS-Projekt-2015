@@ -40,6 +40,8 @@ SUBDIRS :=  \
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../main.c \
+../src/adc.c \
+../src/state_machine.c \
 ../src/timer.c
 
 
@@ -51,18 +53,26 @@ ASM_SRCS +=
 
 OBJS +=  \
 main.o \
+src/adc.o \
+src/state_machine.o \
 src/timer.o
 
 OBJS_AS_ARGS +=  \
 main.o \
+src/adc.o \
+src/state_machine.o \
 src/timer.o
 
 C_DEPS +=  \
 main.d \
+src/adc.d \
+src/state_machine.d \
 src/timer.d
 
 C_DEPS_AS_ARGS +=  \
 main.d \
+src/adc.d \
+src/state_machine.d \
 src/timer.d
 
 OUTPUT_FILE_PATH +=TCR.elf
@@ -79,6 +89,10 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
+
+
 
 
 

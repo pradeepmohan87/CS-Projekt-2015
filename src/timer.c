@@ -16,6 +16,7 @@ ISR(TIMER0_COMP_vect){
 	if((cnt_sema % 10000) ==  0){				//   1  Hz Interrupt => wait 10.000 times
 		 int1Hz();								
 		 cnt_sema = 0;							//   reset Interrupts Counter
+	}
 }
 
  void timer_init(void){

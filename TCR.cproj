@@ -96,10 +96,22 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="include\adc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="include\state_machine.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="include\timer.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\adc.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\state_machine.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\timer.c">
