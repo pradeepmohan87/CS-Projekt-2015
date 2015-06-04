@@ -9,7 +9,9 @@
 volatile uint16_t 	cnt_sema;					// volatile: counting semaphore
 
 ISR(TIMER0_COMP_vect){
-	int10kHz();									//  10 kHz Interrupt
+	cnt_sema++;
+
+								 int10kHz();	//  10 kHz Interrupt
 	if((cnt_sema % 10)    ==  0) int1kHz();		//   1 kHz Interrupt => 1ms wait 10 times 
 	if((cnt_sema % 100)   ==  0) int100Hz();	// 100  Hz Interrupt => 10ms wait 100 times
 	if((cnt_sema % 1000)  ==  0) int10Hz();		//  10  Hz Interrupt => 100ms wait 1000 times
@@ -32,7 +34,8 @@ ISR(TIMER0_COMP_vect){
 		   |  (0<<CS00);			// 1 | 0 | 0 -> Prescaler = 256;
 									// 1 | 0 | 1 -> Prescaler = 1024;
 							
-	 TCCR0 |=  (1<<WGM01);			// Enable CTC Mode
+	 TCCR0 |=  (1<<WGM01)			// Enable CTC Mode
+		   |   (0<<WGM00);
 	 TIFR  |=  (1<<OCF0);			// Set Compare Flag then CTC is thrown 
 	 TIMSK |=  (1<<OCIE0);			// Enable CTC Interrupts
 	 	 

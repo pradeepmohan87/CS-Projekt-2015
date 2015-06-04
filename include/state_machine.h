@@ -11,17 +11,17 @@
 
 #include <avr/io.h>
 
-void SM_MAIN(void);					// 10kHz
-void SM_PRINT(void);				// 1kHz
-void SM_DEBOUNCE(uint8_t pin);		// 100Hz 
-void SM_LCD(void);					// 10Hz
+void MAIN_SM(void);		// 10kHz
 
-enum BUTTON_STATES{
-	WAIT_FOR_BUTTON_ON = 0,
-	DEBOUNCING_BUTTON_ON = 50,
-	WAIT_FOR_BUTTON_OFF = 100,
-	DEBOUNCING_BUTTON_OFF =	159
-};
-
+enum MAIN_SM_STATES{
+	MAIN_MENU = 0,
+	PRINT_MENU = 50,
+	CONFIG_MENU = 100,
+	SET_TEMP_PARAM = 150,
+	SET_LDR_PARAM = 200,
+	SET_SAMPLE_RATE = 250,
+	PRINT_TEMP = 300,
+	PRINT_LDR = 350
+};				
 
 #endif /* STATE_MACHINE_MAIN_H_ */

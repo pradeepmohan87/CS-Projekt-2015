@@ -41,6 +41,10 @@ SUBDIRS :=  \
 C_SRCS +=  \
 ../main.c \
 ../src/adc.c \
+../src/debouncer.c \
+../src/keypad.c \
+../src/lcd.c \
+../src/printer.c \
 ../src/state_machine.c \
 ../src/timer.c
 
@@ -54,24 +58,40 @@ ASM_SRCS +=
 OBJS +=  \
 main.o \
 src/adc.o \
+src/debouncer.o \
+src/keypad.o \
+src/lcd.o \
+src/printer.o \
 src/state_machine.o \
 src/timer.o
 
 OBJS_AS_ARGS +=  \
 main.o \
 src/adc.o \
+src/debouncer.o \
+src/keypad.o \
+src/lcd.o \
+src/printer.o \
 src/state_machine.o \
 src/timer.o
 
 C_DEPS +=  \
 main.d \
 src/adc.d \
+src/debouncer.d \
+src/keypad.d \
+src/lcd.d \
+src/printer.d \
 src/state_machine.d \
 src/timer.d
 
 C_DEPS_AS_ARGS +=  \
 main.d \
 src/adc.d \
+src/debouncer.d \
+src/keypad.d \
+src/lcd.d \
+src/printer.d \
 src/state_machine.d \
 src/timer.d
 
@@ -89,6 +109,14 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
+
+
+
+
+
+
 
 
 
