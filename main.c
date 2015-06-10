@@ -12,6 +12,9 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
+#define EXTERN
+#include "include/globals.h"
+
 #include "include/timer.h"
 #include "include/adc.h"
 #include "include/state_machine.h"
@@ -19,7 +22,6 @@
 #include "include/debouncer.h"
 #include "include/printer.h"
 #include "include/keypad.h"
-
 
 void port_init(void);
 void int1Hz(void);
@@ -34,40 +36,34 @@ int main(void)
 	Initialize_LCD();
 	timer_init();
 	port_init();
-	sei();
 	
 	// Welcome Screen
-	GotoLCD_Location(1,1);
-	Send_String("Thermal Chart");
-		
-	GotoLCD_Location(1,2);
-	Send_String("Recorder");
+	Show_Welcome();
+	_delay_ms(100);
+	Clear_Screen();
+	_delay_ms(2);
 	
-	uint8_t key;
-    while(1)
+	sei();	
+	while(1)
     {
 		key = getKey();
-		GotoLCD_Location(10,2);
-		Send_Int(key);
+		//GotoLCD_Location(1,1);
+		//Send_Int(key);
     }
 }
 
 void port_init(void){
 	DDRC = 0xFF;	// LED Output
-	DDRA = 0xFF;
+	
+	// PA0-PA3 = Input    (R1-R4)
+	// PA4-PA7 = H Resist (C1-C4)
+	DDRA = 0x00;	// Keypad Input/Output
+	PORTA = 0x0F;	// Activate int. Pullups
 }
-void int1Hz(void){
-	//PORTC ^= (1<<PC0);
-}
-void int10Hz(void){
-	//PORTC ^= (1<<PC1);
-}
-void int100Hz(void){
-	//PORTC ^= (1<<PC2);
-}
-void int1kHz(void){
-	//PORTC ^= (1<<PC3);
-}
+void int1Hz(void){}
+void int10Hz(void){}
+void int100Hz(void){}
+void int1kHz(void){}
 void int10kHz(void){
-	//PORTC ^= (1<<PC4);
+	MAIN_SM();
 }

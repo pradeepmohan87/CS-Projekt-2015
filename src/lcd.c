@@ -34,6 +34,10 @@ void Flash_Enable(){
 	LCD_Control &= ~(1<<Enable);
 }
 //***************************************************************************************************
+void Clear_Screen(void){
+	Send_Command(0x01);
+}
+//***************************************************************************************************
 void Send_Command(unsigned char command){
 	Check_if_LCD_is_busy();
 	DataBus = command;
@@ -75,3 +79,85 @@ void GotoLCD_Location(uint8_t x, uint8_t y){
 	Send_Command(0x80 + firstColumnPos[y-1] + (x-1));
 }
 //***************************************************************************************************
+void Show_Welcome(void){
+	GotoLCD_Location(1,1);
+	Send_String("Thermal Chart");
+	
+	GotoLCD_Location(1,2);
+	Send_String("Recorder");
+}
+void Show_Main_Menu(int page){
+	switch (page)
+	{
+	case 0:
+		GotoLCD_Location(4,1);
+		Send_String("Main Menu");
+		GotoLCD_Location(1,2);
+		Send_String("S7 Up | S15 Down");		
+		break;
+	case 1:
+		GotoLCD_Location(1,1);
+		Send_String("Print Chart");
+		GotoLCD_Location(1,2);
+		Send_String("S6 OK  |");
+		break;
+	case 2:
+		GotoLCD_Location(1,1);
+		Send_String("Configure");
+		GotoLCD_Location(1,2);
+		Send_String("S6 OK  |");
+		break;
+	}
+}
+void Show_Print_Menu(int page){
+	switch (page)
+	{
+	case 0:
+		GotoLCD_Location(4,1);
+		Send_String("Print Menu");
+		GotoLCD_Location(1,2);
+		Send_String("       |  S8 CAN");
+		break;
+	case 1:
+		GotoLCD_Location(1,1);
+		Send_String("Print LDR");
+		GotoLCD_Location(1,2);
+		Send_String("S6 OK  |  S8 CAN");
+		break;
+	case 2:
+		GotoLCD_Location(1,1);
+		Send_String("Print Temp");
+		GotoLCD_Location(1,2);
+		Send_String("S6 OK  |  S8 CAN");
+		break;
+	}	
+}
+void Show_Config_Menu(int page){
+	switch (page)
+	{
+	case 0:
+		GotoLCD_Location(4,1);
+		Send_String("Config Menu");
+		GotoLCD_Location(1,2);
+		Send_String("       |  S8 CAN");
+		break;
+	case 1:
+		GotoLCD_Location(1,1);
+		Send_String("Set Sample Rate");
+		GotoLCD_Location(1,2);
+		Send_String("S6 OK  |  S8 CAN");
+		break;
+	case 2:
+		GotoLCD_Location(1,1);
+		Send_String("Set LDR Param");
+		GotoLCD_Location(1,2);
+		Send_String("S6 OK  |  S8 CAN");
+		break;
+	case 3:
+		GotoLCD_Location(1,1);
+		Send_String("Set Temp Param");
+		GotoLCD_Location(1,2);
+		Send_String("S6 OK  |  S8 CAN");
+		break;
+	}
+}

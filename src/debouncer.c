@@ -7,7 +7,7 @@
 
 #include "../include/debouncer.h"
 		
-void DEBOUNCE_BUTTON(uint8_t pin){
+void DEBOUNCE_PORTA(uint8_t pin){
 	volatile static int state = WAIT_FOR_BUTTON_ON;
 	volatile static int counter = 0;
 	

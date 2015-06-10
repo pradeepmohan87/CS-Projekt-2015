@@ -9,6 +9,7 @@
 
 #include <util/delay.h>
 #include <avr/io.h>
+#include "globals.h"
 
 #define DataBus				PORTD
 #define DataDir_DataBus		DDRD
@@ -19,15 +20,22 @@
 #define ReadWrite			1
 #define Enable				2
 
-// 10Hz
+// 10Hz or higher
 void Initialize_LCD(void);	
 void Check_if_LCD_is_busy(void);
 void Flash_Enable(void);
+void Clear_Screen(void);
 void Send_Command(unsigned char command);
 void Send_Character(unsigned char character);
 void Send_String(char *stringOfCharacters);
 void Send_Int(uint16_t var);
 void Send_Double(double var, uint8_t width, uint8_t precision);
 void GotoLCD_Location(uint8_t x, uint8_t y);
+
+// Preprogrammed Menu Displays:
+void Show_Welcome(void);
+void Show_Main_Menu(int page);
+void Show_Print_Menu(int page);
+void Show_Config_Menu(int page);
 
 #endif

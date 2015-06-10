@@ -10,6 +10,7 @@
 #define KEYPAD_H_
 
 #include <avr/io.h>
+#include "globals.h"
 
 #define KEYPAD_PORT PORTA
 #define KEYPAD_DDR   DDRA
@@ -17,5 +18,8 @@
 
 uint8_t getKey(void);
 uint8_t GetKeyPressed(void);
+//uint8_t getKeypad(void);
+
+
 
 #endif /* KEYPAD_H_ */

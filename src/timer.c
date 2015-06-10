@@ -6,7 +6,7 @@
  */ 
 #include "../include/timer.h"
 
-volatile uint16_t 	cnt_sema;					// volatile: counting semaphore
+volatile uint16_t cnt_sema;					// volatile: counting semaphore
 
 ISR(TIMER0_COMP_vect){
 	cnt_sema++;

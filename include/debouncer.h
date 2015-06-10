@@ -10,14 +10,15 @@
 #define DEBOUNCER_H_
 
 #include <avr/io.h>
+#include "globals.h"
 
-void DEBOUNCE_BUTTON(uint8_t pin);	// 100Hz
+void DEBOUNCE_PORTA(uint8_t pin);	// 100Hz
 
 enum BUTTON_STATES{
 	WAIT_FOR_BUTTON_ON = 0,
 	DEBOUNCING_BUTTON_ON = 50,
 	WAIT_FOR_BUTTON_OFF = 100,
-	DEBOUNCING_BUTTON_OFF =	159
+	DEBOUNCING_BUTTON_OFF =	150
 };
 
 

@@ -9,6 +9,7 @@
 #define ADC_H_
 
 #include <avr/io.h>
+#include "globals.h"
 
 void adc_init(void);            						// Init ADC
 void adc_stop(void);            						// Stops ADC

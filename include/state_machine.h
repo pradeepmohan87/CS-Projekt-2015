@@ -10,6 +10,8 @@
 #define STATE_MACHINE_MAIN_H_
 
 #include <avr/io.h>
+#include "globals.h"
+#include "lcd.h"
 
 void MAIN_SM(void);		// 10kHz
 

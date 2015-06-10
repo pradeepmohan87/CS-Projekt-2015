@@ -102,6 +102,9 @@
     <Compile Include="include\debouncer.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="include\globals.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="include\keypad.h">
       <SubType>compile</SubType>
     </Compile>

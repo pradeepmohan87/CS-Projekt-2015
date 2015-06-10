@@ -11,6 +11,7 @@
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include "globals.h"
 
 void timer_init(void);
 extern void int1Hz(void);
