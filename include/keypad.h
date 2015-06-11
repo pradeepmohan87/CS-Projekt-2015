@@ -16,10 +16,16 @@
 #define KEYPAD_DDR   DDRA
 #define KEYPAD_PIN   PINA
 
-uint8_t getKey(void);
-uint8_t GetKeyPressed(void);
-//uint8_t getKeypad(void);
+uint8_t get_key(void);
 
-
+//COL1 ->  PA7
+//COL2 ->  PA6
+//COL3 ->  PA5
+//COL4 ->  PA4
+//
+//ROW1 ->  PA3
+//ROW2 ->  PA2
+//ROW3 ->  PA1
+//ROW4 ->  PA0
 
 #endif /* KEYPAD_H_ */

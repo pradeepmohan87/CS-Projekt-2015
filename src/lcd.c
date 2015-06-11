@@ -35,7 +35,10 @@ void Flash_Enable(){
 }
 //***************************************************************************************************
 void Clear_Screen(void){
-	Send_Command(0x01);
+		GotoLCD_Location(1,1);
+		Send_String("                ");
+		GotoLCD_Location(1,2);
+		Send_String("                ");
 }
 //***************************************************************************************************
 void Send_Command(unsigned char command){
@@ -82,7 +85,6 @@ void GotoLCD_Location(uint8_t x, uint8_t y){
 void Show_Welcome(void){
 	GotoLCD_Location(1,1);
 	Send_String("Thermal Chart");
-	
 	GotoLCD_Location(1,2);
 	Send_String("Recorder");
 }
@@ -90,22 +92,22 @@ void Show_Main_Menu(int page){
 	switch (page)
 	{
 	case 0:
-		GotoLCD_Location(4,1);
-		Send_String("Main Menu");
+		GotoLCD_Location(1,1);
+		Send_String("    Main Menu   ");
 		GotoLCD_Location(1,2);
-		Send_String("S7 Up | S15 Down");		
+		Send_String("S7 Up | S15 Down");	
 		break;
 	case 1:
 		GotoLCD_Location(1,1);
-		Send_String("Print Chart");
+		Send_String("Print Chart     ");
 		GotoLCD_Location(1,2);
-		Send_String("S6 OK  |");
+		Send_String("S6 OK  |        ");
 		break;
 	case 2:
 		GotoLCD_Location(1,1);
-		Send_String("Configure");
+		Send_String("Configure       ");
 		GotoLCD_Location(1,2);
-		Send_String("S6 OK  |");
+		Send_String("S6 OK  |        ");
 		break;
 	}
 }
@@ -113,51 +115,81 @@ void Show_Print_Menu(int page){
 	switch (page)
 	{
 	case 0:
-		GotoLCD_Location(4,1);
-		Send_String("Print Menu");
+		GotoLCD_Location(1,1);
+		Send_String("   Print Menu   ");
 		GotoLCD_Location(1,2);
 		Send_String("       |  S8 CAN");
 		break;
 	case 1:
 		GotoLCD_Location(1,1);
-		Send_String("Print LDR");
+		Send_String("Print LDR       ");
 		GotoLCD_Location(1,2);
 		Send_String("S6 OK  |  S8 CAN");
 		break;
 	case 2:
 		GotoLCD_Location(1,1);
-		Send_String("Print Temp");
+		Send_String("Print Temp      ");
 		GotoLCD_Location(1,2);
 		Send_String("S6 OK  |  S8 CAN");
 		break;
 	}	
 }
+void Show_Print_LDR(void){
+	GotoLCD_Location(1,1);
+	Send_String("Printing LDR    ");
+	GotoLCD_Location(1,2);
+	Send_String("       |  S8 CAN");
+}
+void Show_Print_Temp(void){
+	GotoLCD_Location(1,1);
+	Send_String("Printing Temp   ");
+	GotoLCD_Location(1,2);
+	Send_String("       |  S8 CAN");
+}
 void Show_Config_Menu(int page){
 	switch (page)
 	{
 	case 0:
-		GotoLCD_Location(4,1);
-		Send_String("Config Menu");
+		GotoLCD_Location(1,1);
+		Send_String("   Config Menu  ");
 		GotoLCD_Location(1,2);
 		Send_String("       |  S8 CAN");
 		break;
 	case 1:
 		GotoLCD_Location(1,1);
-		Send_String("Set Sample Rate");
+		Send_String("Set Sample Rate ");
 		GotoLCD_Location(1,2);
 		Send_String("S6 OK  |  S8 CAN");
 		break;
 	case 2:
 		GotoLCD_Location(1,1);
-		Send_String("Set LDR Param");
+		Send_String("Set LDR Param   ");
 		GotoLCD_Location(1,2);
 		Send_String("S6 OK  |  S8 CAN");
 		break;
 	case 3:
 		GotoLCD_Location(1,1);
-		Send_String("Set Temp Param");
+		Send_String("Set Temp Param  ");
 		GotoLCD_Location(1,2);
 		Send_String("S6 OK  |  S8 CAN");
 		break;
 	}
+}
+void Show_Cfg_Rate(void){
+	GotoLCD_Location(1,1);
+	Send_String("Set Rate %1     ");
+	GotoLCD_Location(1,2);
+	Send_String("S7|S15 |  S8 CAN");
+}
+void Show_Cfg_LDR(void){
+	GotoLCD_Location(1,1);
+	Send_String("Set LDR %1      ");
+	GotoLCD_Location(1,2);
+	Send_String("S7|S15 |  S8 CAN");
+}
+void Show_Cfg_Temp(void){
+	GotoLCD_Location(1,1);
+	Send_String("Set Temp %1     ");
+	GotoLCD_Location(1,2);
+	Send_String("S7|S15 |  S8 CAN");
 }

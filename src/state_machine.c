@@ -17,51 +17,64 @@ void MAIN_SM(void){
 		case MAIN_MENU: {
 			Show_Main_Menu(counter);
 			if(key == UP) {
-				while(getKey() == UP);	// Wait for Release!
+				while(get_key() == UP) key = 0;		// Wait for Release!
 				counter--;
-				Clear_Screen();
 				if(counter < 0) counter = 0;		
 			}
 			if(key == DOWN){
-				while(getKey() == DOWN); // Wait for Release!
+				while(get_key() == DOWN) key = 0;	// Wait for Release!
 				counter++;
-				Clear_Screen();
 				if(counter > 2) counter = 2;
 			}
 			if(counter == 1 && key == CONFIRM){
 				counter = 0;
-				Clear_Screen();
 				state = PRINT_MENU;
 			}
 			if(counter == 2 && key == CONFIRM){
 				counter = 0;
-				Clear_Screen();
 				state = CONFIG_MENU;
 			}
 			break;
 		}
 		case PRINT_MENU: {
-			PORTC |= (1<<PC0);
-			if(key == UP) counter++;
-			if(key == DOWN) counter--;
+			Show_Print_Menu(counter);
+			if(key == UP) {
+				while(get_key() == UP) key = 0;		// Wait for Release!
+				counter--;
+				if(counter < 0) counter = 0;
+			}
+			if(key == DOWN){
+				while(get_key() == DOWN) key = 0;	// Wait for Release!
+				counter++;
+				if(counter > 2) counter = 2;
+			}
 			if(counter == 1 && key == CONFIRM){ 
 				counter = 0;
 				state = PRINT_LDR;
 			}
 			if(counter == 2 && key == CONFIRM){
 				counter = 0;
-				state = PRINT_LDR;
+				state = PRINT_TEMP;
 			}
 			if(key == CANCEL){
-				counter = 0;
+				while(get_key() == CANCEL) key = 0; // Wait for Release!
+				counter = 1;
 				state = MAIN_MENU;
 			}
 			break;
 		}
 		case CONFIG_MENU: {
-			PORTC |= (1<<PC1);
-			if(key == UP) counter++;
-			if(key == DOWN) counter--;
+			Show_Config_Menu(counter);
+			if(key == UP) {
+				while(get_key() == UP) key = 0;		// Wait for Release!
+				counter--;
+				if(counter < 0) counter = 0;
+			}
+			if(key == DOWN){
+				while(get_key() == DOWN) key = 0;	// Wait for Release!
+				counter++;
+				if(counter > 3) counter = 3;
+			}
 			if(counter == 1 && key == CONFIRM){
 				counter = 0;
 				state = SET_SAMPLE_RATE;
@@ -70,21 +83,56 @@ void MAIN_SM(void){
 				counter = 0;
 				state = SET_LDR_PARAM;
 			}
-			if(key == CANCEL){
+			if(counter == 3 && key == CONFIRM){
 				counter = 0;
 				state = SET_TEMP_PARAM;
+			}
+			if(key == CANCEL){
+				while(get_key() == CANCEL) key = 0; // Wait for Release!
+				counter = 2;
+				state = MAIN_MENU;
 			}
 			break;
 		}
 		case PRINT_TEMP:
+			Show_Print_Temp();
+			if(key == CANCEL){
+				while(get_key() == CANCEL) key = 0; // Wait for Release!
+				counter = 2;
+				state = PRINT_MENU;
+			}
 			break;
 		case PRINT_LDR:
+			Show_Print_LDR();
+			if(key == CANCEL){
+				while(get_key() == CANCEL) key = 0; // Wait for Release!
+				counter = 1;
+				state = PRINT_MENU;
+			}
 			break;
 		case SET_SAMPLE_RATE:
+			Show_Cfg_Rate();
+			if(key == CANCEL){
+				while(get_key() == CANCEL) key = 0; // Wait for Release!
+				counter = 1;
+				state = CONFIG_MENU;
+			}
 			break;
 		case SET_LDR_PARAM:
+			Show_Cfg_LDR();
+			if(key == CANCEL){
+				while(get_key() == CANCEL) key = 0; // Wait for Release!
+				counter = 2;
+				state = CONFIG_MENU;
+			}
 			break;
 		case SET_TEMP_PARAM:
+			Show_Cfg_Temp();
+			if(key == CANCEL){
+				while(get_key() == CANCEL) key = 0; // Wait for Release!
+				counter = 3;
+				state = CONFIG_MENU;
+			}
 			break;
 	}
 }		

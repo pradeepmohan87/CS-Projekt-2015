@@ -37,18 +37,15 @@ int main(void)
 	timer_init();
 	port_init();
 	
-	// Welcome Screen
+	//Welcome Screen
 	Show_Welcome();
-	_delay_ms(100);
+	_delay_ms(200);
 	Clear_Screen();
-	_delay_ms(2);
 	
 	sei();	
 	while(1)
-    {
-		key = getKey();
-		//GotoLCD_Location(1,1);
-		//Send_Int(key);
+	{
+		
     }
 }
 
@@ -57,13 +54,22 @@ void port_init(void){
 	
 	// PA0-PA3 = Input    (R1-R4)
 	// PA4-PA7 = H Resist (C1-C4)
-	DDRA = 0x00;	// Keypad Input/Output
+	
+	DDRA = 0xF0;	// H nibble for output(columns) L for input(rows);
 	PORTA = 0x0F;	// Activate int. Pullups
 }
-void int1Hz(void){}
-void int10Hz(void){}
-void int100Hz(void){}
-void int1kHz(void){}
+void int1Hz(void){
+}
+void int10Hz(void){
+}
+void int100Hz(void){
+
+}
+void int1kHz(void){
+	PORTC = 0x00;
+	key = get_key();
+	PORTC = key;
+}
 void int10kHz(void){
 	MAIN_SM();
 }

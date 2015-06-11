@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 #ifndef F_CPU
-#define F_CPU 16000000UL 		// change this with respect to microcontroller clock speed.
+#define F_CPU 16000000UL 	// change this with respect to microcontroller clock speed.
 #endif
 
 #include <util/delay.h>
@@ -32,10 +32,14 @@ void Send_Int(uint16_t var);
 void Send_Double(double var, uint8_t width, uint8_t precision);
 void GotoLCD_Location(uint8_t x, uint8_t y);
 
-// Preprogrammed Menu Displays:
+// Preprogrammed LCD Views:
 void Show_Welcome(void);
 void Show_Main_Menu(int page);
 void Show_Print_Menu(int page);
 void Show_Config_Menu(int page);
-
+void Show_Print_LDR(void);
+void Show_Print_Temp(void);
+void Show_Cfg_Rate(void);
+void Show_Cfg_LDR(void);
+void Show_Cfg_Temp(void);
 #endif
