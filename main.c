@@ -59,11 +59,11 @@ void port_init(void){
 	PORTA = 0x0F;	// Activate int. Pullups
 }
 void int1Hz(void){
+	
 }
 void int10Hz(void){
 }
 void int100Hz(void){
-
 }
 void int1kHz(void){
 	PORTC = 0x00;
