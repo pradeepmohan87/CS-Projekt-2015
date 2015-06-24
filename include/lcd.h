@@ -3,12 +3,12 @@
 
 #include <stdlib.h>
 
-#ifndef F_CPU
-#define F_CPU 16000000UL 	// change this with respect to microcontroller clock speed.
-#endif
-
-#include <util/delay.h>
-#include <avr/io.h>
+//#ifndef F_CPU
+//#define F_CPU 16000000UL 	// change this with respect to microcontroller clock speed.
+//#endif
+//
+//#include <util/delay.h>
+//#include <avr/io.h>
 #include "globals.h"
 
 #define DataBus				PORTD

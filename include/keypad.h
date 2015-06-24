@@ -9,14 +9,15 @@
 #ifndef KEYPAD_H_
 #define KEYPAD_H_
 
-#include <avr/io.h>
 #include "globals.h"
 
 #define KEYPAD_PORT PORTA
 #define KEYPAD_DDR   DDRA
 #define KEYPAD_PIN   PINA
 
+void keypad_init(void);
 uint8_t get_key(void);
+volatile uint8_t key;
 
 //COL1 ->  PA7
 //COL2 ->  PA6

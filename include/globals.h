@@ -9,11 +9,14 @@
 #ifndef GLOBALS_H_
 #define GLOBALS_H_
 
-#ifndef EXTERN
-#define EXTERN extern
-#endif 
+#ifndef F_CPU
+#define F_CPU 1000000UL
+#endif
 
-EXTERN volatile uint8_t key;
+#include <util/delay.h>
+#include <avr/io.h>
+
+extern volatile uint8_t key;
 
 enum KEYPAD_BUTTONS{
 	S1 = 1,

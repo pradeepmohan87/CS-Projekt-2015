@@ -9,7 +9,6 @@
 #ifndef DEBOUNCER_H_
 #define DEBOUNCER_H_
 
-#include <avr/io.h>
 #include "globals.h"
 
 void DEBOUNCE_PORTA(uint8_t pin);	// 100Hz

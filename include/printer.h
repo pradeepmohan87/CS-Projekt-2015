@@ -9,7 +9,6 @@
 #ifndef PRINTER_H_
 #define PRINTER_H_
 
-#include <avr/io.h>
 #include "globals.h"
 
 void PRINTER_INIT(void);				// 1kHz

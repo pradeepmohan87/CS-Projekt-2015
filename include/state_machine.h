@@ -9,11 +9,10 @@
 #ifndef STATE_MACHINE_MAIN_H_
 #define STATE_MACHINE_MAIN_H_
 
-#include <avr/io.h>
 #include "globals.h"
 #include "lcd.h"
 
-void MAIN_SM(void);		// 10kHz
+void MAIN_STATEMACHINE(void);		// 10kHz
 
 enum MAIN_SM_STATES{
 	MAIN_MENU = 0,

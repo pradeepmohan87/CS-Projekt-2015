@@ -8,7 +8,6 @@
 #ifndef ADC_H_
 #define ADC_H_
 
-#include <avr/io.h>
 #include "globals.h"
 
 void adc_init(void);            						// Init ADC
