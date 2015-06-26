@@ -17,6 +17,12 @@
 #include <avr/io.h>
 
 extern volatile uint8_t key;
+extern volatile uint8_t print_graph;
+extern volatile uint8_t print_temp_flag;
+extern volatile uint16_t temp;
+extern volatile uint16_t ldr_value;
+extern volatile int  range_min;
+extern volatile int  range_max;
 
 enum KEYPAD_BUTTONS{
 	S1 = 1,

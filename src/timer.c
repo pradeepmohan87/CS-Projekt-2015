@@ -5,6 +5,7 @@
  *  Author: TwoBit
  */ 
 #include "../include/timer.h"
+#include "../include/printer.h"
 
 volatile uint16_t cnt_sema;					// volatile: counting semaphore
 
@@ -21,7 +22,7 @@ ISR(TIMER0_COMP_vect){
 	//}
 }
 
- void timer_init(void){
+ void timer0_init(void){
 	cnt_sema = 0;					//Start Value for the Interrupt Counter
 
 	 // f=1MHz/(100)  =  10kHz => 0,100 ms	 
@@ -41,4 +42,57 @@ ISR(TIMER0_COMP_vect){
 	 	 
 	 TCNT0 	=  0x00;				// Start Value for Timer/Counter Reg
 	 OCR0   =  100-1;				// Compare Value (starting from 0 so -1)
+ }
+ 
+ ISR(TIMER1_COMPA_vect)
+ { tic=tic+1;
+	 if(tic%STROBEDELAY==0)
+	 {
+		 if(strobe_state>-1) { print_buffer_divided();}
+
+		 
+	 }
+	 if(tic%50==0)//should be actually based on sampling rate set by user..
+	 {
+		if(print_graph)
+		 {
+			 
+			 temp++;
+			 if(print_temp_flag) test_print(temp);
+			 else test_print(ldr_value);
+		 }
+		 
+	 }
+	 
+	 if(msteps>0)
+	 {
+		 if(!printingstart) printingstart=1;
+		 //step_toggle=!step_toggle;
+		 if(step_toggle) step_toggle=0;
+		 else step_toggle=1;
+		 
+		 PORT_MOTOR ^= (MSTEP_PIN);
+		 
+		 
+		 if(!step_toggle) { msteps--; }
+		 
+	 }
+	 else
+	 { if(printingstart)
+	 printingstart=0;}
+
+ }
+ 
+ 
+ void timer1_init()
+ {
+	 TCCR1A=0b00000000;
+	 TCCR1B=0b00000000;
+
+	 TCCR1B |= ((1<<WGM12) | (1<< CS10));
+	 TCNT1=0;
+	 OCR1A=1999;//2ms  prescaler 1
+	 TCNT1=0;
+	 TIMSK |= (1<<OCIE1A);
+
  }

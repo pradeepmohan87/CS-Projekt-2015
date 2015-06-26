@@ -14,6 +14,10 @@ enum Boolean{
 	true = 1
 };
 
+volatile uint16_t ldr_value;
+volatile int  range_min=0;
+volatile int  range_max=1000;
+
 void MAIN_STATEMACHINE(void){
 	volatile static int state = MAIN_MENU;
 	volatile static int counter = 0;
@@ -135,7 +139,10 @@ void MAIN_STATEMACHINE(void){
 				counter = 2;
 				sema_flag = true; // Allow LCD to print
 				state = PRINT_MENU; 
+				print_graph=20;
 			}
+			 print_temp_flag=1;
+			if(!print_graph) print_graph=1;
 			break;
 		}
 		case PRINT_LDR:{
@@ -148,19 +155,17 @@ void MAIN_STATEMACHINE(void){
 				counter = 1;
 				sema_flag = true; // Allow LCD to print
 				state = PRINT_MENU;
+				print_graph=20;
 			}
 			uint16_t adc_value = adc_get(3);
-			_delay_ms(10);
+			ldr_value=adc_value;
+						
+			print_temp_flag=0;
+			if(!print_graph) print_graph=1;
 			
-			GotoLCD_Location(1,1);
-			Send_String("ADC VALUE:      ");
+			if(print_graph==10) { //get ADC value only if values have started printing
 			
-			GotoLCD_Location(12,1);
-			Send_Int(adc_value);
-			
-			GotoLCD_Location(1,2);
-			Send_String("       |  S8 CAN");
-			
+			}
 			break;
 		}
 		case SET_SAMPLE_RATE:{

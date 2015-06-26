@@ -10,7 +10,17 @@
 #include <avr/interrupt.h>
 #include "globals.h"
 
-void timer_init(void);
+#define STROBEDELAY 4
+
+extern volatile int strobe_state;
+extern volatile long int tic;
+extern volatile int printingstart;
+extern volatile int msteps;
+extern volatile int step_toggle;
+
+
+void timer0_init(void);
+void timer1_init(void);
 extern void int1Hz(void);
 extern void int10Hz(void);
 extern void int100Hz(void);

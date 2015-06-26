@@ -45,6 +45,7 @@ C_SRCS +=  \
 ../src/keypad.c \
 ../src/lcd.c \
 ../src/printer.c \
+../src/spi.c \
 ../src/state_machine.c \
 ../src/timer.c
 
@@ -62,6 +63,7 @@ src/debouncer.o \
 src/keypad.o \
 src/lcd.o \
 src/printer.o \
+src/spi.o \
 src/state_machine.o \
 src/timer.o
 
@@ -72,6 +74,7 @@ src/debouncer.o \
 src/keypad.o \
 src/lcd.o \
 src/printer.o \
+src/spi.o \
 src/state_machine.o \
 src/timer.o
 
@@ -82,6 +85,7 @@ src/debouncer.d \
 src/keypad.d \
 src/lcd.d \
 src/printer.d \
+src/spi.d \
 src/state_machine.d \
 src/timer.d
 
@@ -92,6 +96,7 @@ src/debouncer.d \
 src/keypad.d \
 src/lcd.d \
 src/printer.d \
+src/spi.d \
 src/state_machine.d \
 src/timer.d
 
@@ -109,6 +114,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 
