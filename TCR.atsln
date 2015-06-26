@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "TCR", "TCR.cproj", "{FFA3444D-B05F-4280-B969-6D6B3BF73F79}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FFA3444D-B05F-4280-B969-6D6B3BF73F79}.Debug|AVR.ActiveCfg = Debug|AVR
+		{FFA3444D-B05F-4280-B969-6D6B3BF73F79}.Debug|AVR.Build.0 = Debug|AVR
+		{FFA3444D-B05F-4280-B969-6D6B3BF73F79}.Release|AVR.ActiveCfg = Release|AVR
+		{FFA3444D-B05F-4280-B969-6D6B3BF73F79}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

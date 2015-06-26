@@ -4,13 +4,11 @@
  * Created: 30.05.2015 16:05:50
  *  Author: TwoBit
  */ 
-
-
 #ifndef TIMER_H_
 #define TIMER_H_
 
-#include <avr/io.h>
 #include <avr/interrupt.h>
+#include "globals.h"
 
 void timer_init(void);
 extern void int1Hz(void);
