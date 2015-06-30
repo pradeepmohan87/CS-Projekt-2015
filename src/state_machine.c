@@ -142,7 +142,9 @@ void MAIN_STATEMACHINE(void){
 				print_graph=20;
 			}
 			 print_temp_flag=1;
-			if(!print_graph) print_graph=1;
+			if(print_graph==10){
+				temp = ds1820_read_temp(USEDPIN);//Get temperature from DS1820 puffer oben
+			}
 			break;
 		}
 		case PRINT_LDR:{

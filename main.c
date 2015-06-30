@@ -13,7 +13,7 @@
 #include "include/printer.h"
 #include "include/spi.h"
 #include "include/keypad.h"
-
+#include "include/ds18x20lib.h"
 
 // Timer-Slicer Interrupts:
 void int1Hz(void);
@@ -35,6 +35,7 @@ int main(void)
 	timer1_init();
 	keypad_init();
 	adc_init();
+	ds1820_init(USEDPIN);              //Initialize DS1820 Buffer oben
 	
 	//Welcome Screen
 	Show_Welcome();
