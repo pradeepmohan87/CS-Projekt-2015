@@ -14,6 +14,7 @@
 #include "include/spi.h"
 #include "include/keypad.h"
 #include "include/ds18x20lib.h"
+#include <stdio.h>
 
 // Timer-Slicer Interrupts:
 void int1Hz(void);
@@ -22,45 +23,51 @@ void int100Hz(void);
 void int1kHz(void);
 void int10kHz(void);
 
-volatile uint16_t temp=50;
+// Measurmet Values:
+volatile int8_t temp = 0;
+volatile uint16_t ldr_value = 0;
+
+// Config Parameter Default Definitions:
+volatile int sample_rate = 50;
+
+volatile int range_min = 0;
+volatile int range_max = 1000;
+
+volatile int temp_min = 0;
+volatile int temp_max = 125;
+
+float temperature;
+
+unsigned char temp_po_str[8];
+float temp_po;
 
 int main(void)
 {
 	// Initialize System
 	Initialize_LCD();
 	timer0_init();
+	timer1_init();
 	init_printer();
 	setup_strobes();
 	setup_SPI();
-	timer1_init();
 	keypad_init();
 	adc_init();
 	ds1820_init(USEDPIN);              //Initialize DS1820 Buffer oben
-	
+		
 	//Welcome Screen
 	Show_Welcome();
-	_delay_ms(200);
+	_delay_ms(100);
+	Clear_Screen();
+	
 	sei();	
+	
 	while(1)
 	{
     }
 }
 
-//void int1Hz(void){
-	//PORTC ^= (1<<PC0);	
-//}
-//void int10Hz(void){	
-	//PORTC ^= (1<<PC1);
-//}
-//void int100Hz(void){ //28Hz
-	//PORTC ^= (1<<PC2);
-//}
-//void int1kHz(void){ // 50us CycleTime and Deley of 6ms
-	//PORTC ^= (1<<PC3); 
-	//key = get_key();
-	//PORTC = key;	
-//}
-void int10kHz(void){ // 1.5khz but with hard Jittering	
+// Timer-Slicer Interrupts Definitions:
+void int10kHz(void){ // Critical Section
 	key = get_key();
 	MAIN_STATEMACHINE();
 }

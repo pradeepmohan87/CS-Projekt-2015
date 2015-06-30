@@ -39,9 +39,11 @@ SUBDIRS :=  \
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../ds18b20.c \
 ../main.c \
 ../src/adc.c \
 ../src/debouncer.c \
+../src/ds18x20lib.c \
 ../src/keypad.c \
 ../src/lcd.c \
 ../src/printer.c \
@@ -57,9 +59,11 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+ds18b20.o \
 main.o \
 src/adc.o \
 src/debouncer.o \
+src/ds18x20lib.o \
 src/keypad.o \
 src/lcd.o \
 src/printer.o \
@@ -68,9 +72,11 @@ src/state_machine.o \
 src/timer.o
 
 OBJS_AS_ARGS +=  \
+ds18b20.o \
 main.o \
 src/adc.o \
 src/debouncer.o \
+src/ds18x20lib.o \
 src/keypad.o \
 src/lcd.o \
 src/printer.o \
@@ -79,9 +85,11 @@ src/state_machine.o \
 src/timer.o
 
 C_DEPS +=  \
+ds18b20.d \
 main.d \
 src/adc.d \
 src/debouncer.d \
+src/ds18x20lib.d \
 src/keypad.d \
 src/lcd.d \
 src/printer.d \
@@ -90,9 +98,11 @@ src/state_machine.d \
 src/timer.d
 
 C_DEPS_AS_ARGS +=  \
+ds18b20.d \
 main.d \
 src/adc.d \
 src/debouncer.d \
+src/ds18x20lib.d \
 src/keypad.d \
 src/lcd.d \
 src/printer.d \
@@ -114,6 +124,10 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
+
+
 
 
 

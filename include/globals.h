@@ -10,7 +10,7 @@
 #define GLOBALS_H_
 
 #ifndef F_CPU
-#define F_CPU 1000000UL
+#define F_CPU 10000000UL
 #endif
 
 #include <util/delay.h>
@@ -19,10 +19,17 @@
 extern volatile uint8_t key;
 extern volatile uint8_t print_graph;
 extern volatile uint8_t print_temp_flag;
-extern volatile uint16_t temp;
+
+// Measurment Values:
+extern volatile int8_t temp;
 extern volatile uint16_t ldr_value;
-extern volatile int  range_min;
-extern volatile int  range_max;
+
+// Configure Parameters:
+extern volatile int sample_rate;
+extern volatile int range_min;
+extern volatile int range_max;
+extern volatile int temp_min;
+extern volatile int temp_max;
 
 enum KEYPAD_BUTTONS{
 	S1 = 1,

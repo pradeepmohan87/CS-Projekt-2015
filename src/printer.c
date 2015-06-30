@@ -33,7 +33,7 @@ char vertical_buffer[40][2];
 uint8_t globalhpos=0;
 uint8_t vertical_buffer_length=0;
 uint8_t vertical_buffer_pointer=0;
-uint8_t count_readings=0;
+uint16_t count_readings=0;
 
 void setup_strobes()
 {
@@ -140,7 +140,6 @@ void print_buffer_divided()
 long int map_temp(long int xtemp, long int in_min, long int in_max, long int out_min, long int out_max)
 {
 	return (xtemp - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-	
 }
 
 
@@ -160,7 +159,9 @@ void data_write_buffer_char(char c)
 		if(char_ascii>=65 && char_ascii<90)  char_index=char_ascii-65;
 		else if(char_ascii>=97 && char_ascii<=122) char_index=char_ascii-97;
 		else if(char_ascii==32) char_index=26;
-		else char_index=27;
+		else if(char_ascii==176) char_index=27;
+		else if(char_ascii==45) char_index=28;
+		else char_index=26;
 		for(int i=0;i<12;i++)
 		{
 			buffer[i][globalhpos]=font[char_index][i];
@@ -183,14 +184,11 @@ void initialize_buffer_lines()
 
 void data_write_buffer_str(char *stringOfCharacters)
 {
-
 	initialize_buffer_lines();
 	while(*stringOfCharacters>0)
 	{
 		data_write_buffer_char(*stringOfCharacters++);
-	}
-	
-	
+	}	
 }
 
 void data_write_yaxis()
@@ -209,16 +207,35 @@ void data_write_buffer_min_max()
 		
 		
 		initialize_buffer_lines();
+		int current_range_min;
+		int current_range_max;
+		if(print_temp_flag==1)
+		{
+			current_range_max=temp_max;
+			current_range_min=temp_min;
+		}
+		else
+		{
+			current_range_max=range_max;
+			current_range_min=range_min;
+		}
 		
 		char char_range_min[4]="    ";
 		char char_range_max[4]="    ";
-		itoa(range_min,char_range_min,10);
-		itoa(range_max,char_range_max,10);
+		itoa(current_range_min,char_range_min,10);
+		itoa(current_range_max,char_range_max,10);
 		globalhpos=2;
+	/*
+	while(*char_range_min>0)
+	{
+		data_write_buffer_char(*char_range_min++);
+	}*/
+		
 		for(int charindex=0;charindex<4;charindex++)
 		{
 			data_write_buffer_char(char_range_min[charindex]);
 		}
+		
 		globalhpos=43;
 		for(int charindex=0;charindex<4;charindex++)
 		{
@@ -263,8 +280,21 @@ void data_write_temp(uint16_t tempreading)
 	//data_write_buffer_str("Temperature in degº");globalhpos=0;
 	globalhpos=0;
 	
+	int current_range_min;
+	int current_range_max;
+	if(print_temp_flag==1)
+	{
+		current_range_max=temp_max;
+		current_range_min=temp_min;
+	}
+	else
+	{
+		current_range_max=range_max;
+		current_range_min=range_min;
+	}
+	
 	//tackle problem of combining axis and label
-	long int temp_pos=map_temp(tempreading,0,1023,17,383);
+	long int temp_pos=map_temp(tempreading,current_range_min,current_range_max,17,383);
 	for(int i=0;i<48;i++)
 	buffer[0][i]=0b00000000; //set all other bits to 0
 	
@@ -331,7 +361,14 @@ void test_print(uint16_t tempreading)
 						
 				globalhpos=0;global_lines=1;count_lines=0;
 				data_write_yaxis();
-				strobe_state=0; print_graph=10;
+				strobe_state=0; print_graph=5;
+			}
+		}
+		else if(print_graph==5)
+		{
+			if(strobe_state==-1)
+			{
+			print_graph=10;
 			}
 		}
 		else if(print_graph==10)
@@ -340,6 +377,7 @@ void test_print(uint16_t tempreading)
 			{
 				globalhpos=0;global_lines=1;count_lines=0; 
 				count_readings++;
+				if(count_readings>9999) count_readings=0;
 				if(count_readings%40==0) 
 				{
 					vertical_buffer_length=0;

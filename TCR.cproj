@@ -107,10 +107,19 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ds18b20.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ds18b20.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="include\adc.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="include\debouncer.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="include\ds18x20lib.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="include\font.h">
@@ -144,6 +153,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\debouncer.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\ds18x20lib.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\keypad.c">

@@ -2,13 +2,6 @@
 #define LCD
 
 #include <stdlib.h>
-
-//#ifndef F_CPU
-//#define F_CPU 16000000UL 	// change this with respect to microcontroller clock speed.
-//#endif
-//
-//#include <util/delay.h>
-//#include <avr/io.h>
 #include "globals.h"
 
 #define DataBus				PORTD
@@ -39,7 +32,14 @@ void Show_Print_Menu(int page);
 void Show_Config_Menu(int page);
 void Show_Print_LDR(void);
 void Show_Print_Temp(void);
+
 void Show_Cfg_Rate(void);
+
 void Show_Cfg_LDR(void);
+void Show_LDR_From(void);
+void Show_LDR_To(void);
+
 void Show_Cfg_Temp(void);
+void Show_Temp_From(void);
+void Show_Temp_To(void);
 #endif

@@ -99,13 +99,13 @@ void Show_Main_Menu(int page){
 		break;
 	case 1:
 		GotoLCD_Location(1,1);
-		Send_String("Print Chart     ");
+		Send_String("Do a measurement");
 		GotoLCD_Location(1,2);
 		Send_String("S6 OK  |        ");
 		break;
 	case 2:
 		GotoLCD_Location(1,1);
-		Send_String("Configure       ");
+		Send_String("Configuration   ");
 		GotoLCD_Location(1,2);
 		Send_String("S6 OK  |        ");
 		break;
@@ -122,13 +122,13 @@ void Show_Print_Menu(int page){
 		break;
 	case 1:
 		GotoLCD_Location(1,1);
-		Send_String("Print LDR       ");
+		Send_String("Measure LDR     ");
 		GotoLCD_Location(1,2);
 		Send_String("S6 OK  |  S8 CAN");
 		break;
 	case 2:
 		GotoLCD_Location(1,1);
-		Send_String("Print Temp      ");
+		Send_String("Measure Temp    ");
 		GotoLCD_Location(1,2);
 		Send_String("S6 OK  |  S8 CAN");
 		break;
@@ -146,6 +146,7 @@ void Show_Print_Temp(void){
 	GotoLCD_Location(1,2);
 	Send_String("       |  S8 CAN");
 }
+
 void Show_Config_Menu(int page){
 	switch (page)
 	{
@@ -163,33 +164,76 @@ void Show_Config_Menu(int page){
 		break;
 	case 2:
 		GotoLCD_Location(1,1);
-		Send_String("Set LDR Param   ");
+		Send_String("Set LDR range   ");
 		GotoLCD_Location(1,2);
 		Send_String("S6 OK  |  S8 CAN");
 		break;
 	case 3:
 		GotoLCD_Location(1,1);
-		Send_String("Set Temp Param  ");
+		Send_String("Set Temp range  ");
 		GotoLCD_Location(1,2);
 		Send_String("S6 OK  |  S8 CAN");
 		break;
 	}
 }
+/************* SAMPLE RATE *****************/
 void Show_Cfg_Rate(void){
 	GotoLCD_Location(1,1);
-	Send_String("Set Rate %1     ");
+	Send_String("Samples/s:      ");
+	GotoLCD_Location(12,1);
+	Send_Double(500/sample_rate,3,1);
 	GotoLCD_Location(1,2);
-	Send_String("S7|S15 |  S8 CAN");
+	Send_String("S7|S15 |  S8 OK ");
 }
+/************* LDR *****************/
 void Show_Cfg_LDR(void){
 	GotoLCD_Location(1,1);
 	Send_String("Set LDR %1      ");
 	GotoLCD_Location(1,2);
-	Send_String("S7|S15 |  S8 CAN");
+	Send_String("S7|S15 |  S8 OK ");
 }
+void Show_LDR_From(void){
+	GotoLCD_Location(1,1);
+	Send_String("Light from:     ");
+	
+	GotoLCD_Location(12,1);
+	Send_Int(range_min);
+	
+	GotoLCD_Location(1,2);
+	Send_String("S7|S15 |  S8 OK ");
+}
+void Show_LDR_To(void){
+	GotoLCD_Location(1,1);
+	Send_String("Light to:       ");
+	
+	GotoLCD_Location(10,1);
+	Send_Int(range_max);
+	
+	GotoLCD_Location(1,2);
+	Send_String("S7|S15 |  S8 OK ");
+}
+
+
+/************* TEMP *****************/
 void Show_Cfg_Temp(void){
 	GotoLCD_Location(1,1);
 	Send_String("Set Temp %1     ");
 	GotoLCD_Location(1,2);
-	Send_String("S7|S15 |  S8 CAN");
+	Send_String("S7|S15 |  S8 OK ");
+}
+void Show_Temp_From(void){
+	GotoLCD_Location(1,1);
+	Send_String("Temp. from:     ");
+	GotoLCD_Location(12,1);
+	Send_Int(temp_min);
+	GotoLCD_Location(1,2);
+	Send_String("S7|S15 |  S8 OK ");
+}
+void Show_Temp_To(void){
+	GotoLCD_Location(1,1);
+	Send_String("Temp. to:       ");
+	GotoLCD_Location(10,1);
+	Send_Int(temp_max);
+	GotoLCD_Location(1,2);
+	Send_String("S7|S15 |  S8 OK ");
 }
